@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Brand Kit — Aftershoot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+<style>
+:root{
+  --s0:#fafafa;--s1:#fff;--s2:#f6f6f6;--s3:#e4e4e7;
+  --sp:#2563eb;--sp-h:#1d4ed8;
+  --t0:#18181b;--t1:#474747;--t2:#71717a;--t3:#a1a1aa;
+  --ta:#2563eb;--tw:#fff;
+  --e5:#e2e2e2;--e6:#e4e4e7;--fc:#8aacf5;
+  --green:#15803d;--red:#dc2626;
+  --r-sm:4px;--r-md:6px;--r-lg:8px;--r-xl:12px;--r-f:9999px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--s0);color:var(--t0);}
+.ms{font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;display:inline-flex;align-items:center;user-select:none;line-height:1;vertical-align:middle;}
+.msf{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20 !important;}
+
+/* Layout */
+#app{display:flex;height:100vh;overflow:hidden;}
+#sidebar{width:260px;flex-shrink:0;background:var(--s1);border-right:1px solid var(--e6);display:flex;flex-direction:column;overflow:hidden;}
+#main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;}
+
+/* Sidebar */
+.sb-logo{padding:14px 16px;border-bottom:1px solid var(--e6);display:flex;align-items:center;gap:8px;}
+.sb-logo-icon{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#4f8ef7,#2563eb);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;}
+.sb-logo span{font-size:15px;font-weight:600;}
+.sb-nav{padding:10px 8px;flex:1;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--r-lg);cursor:pointer;color:var(--t1);font-size:14px;transition:background .1s;}
+.nav-item:hover{background:var(--s2);}
+.nav-item.active{background:rgba(37,99,235,.08);color:var(--sp);font-weight:600;}
+.nav-sub{padding-left:24px;margin-top:2px;}
+.nav-sub-item{padding:5px 10px;border-radius:var(--r-lg);font-size:13px;color:var(--t2);cursor:pointer;}
+.nav-sub-item:hover{background:var(--s2);}
+.nav-group-head{display:flex;align-items:center;justify-content:space-between;}
+.storage-card{margin:10px;border:1px solid var(--e6);border-radius:var(--r-xl);padding:12px;background:var(--s2);}
+.storage-label{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--t2);margin-bottom:4px;}
+.storage-bar{height:4px;border-radius:var(--r-f);background:var(--s3);margin:8px 0 4px;}
+.storage-fill{width:1.3%;height:100%;border-radius:var(--r-f);background:var(--sp);}
+
+/* Buttons */
+.bp{background:var(--sp);color:#fff;border:none;border-radius:var(--r-lg);padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background .15s;font-family:'Inter',sans-serif;}
+.bp:hover{background:var(--sp-h);}
+.bs{background:var(--s1);color:var(--t1);border:1px solid var(--e6);border-radius:var(--r-lg);padding:6px 12px;font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background .1s;font-family:'Inter',sans-serif;}
+.bs:hover{background:var(--s2);}
+.bs.danger{color:var(--red);}
+.bs.danger:hover{background:#fef2f2;}
+
+/* Cards */
+.card{background:var(--s1);border:1px solid var(--e6);border-radius:var(--r-xl);padding:16px;}
+.slabel{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--t2);margin-bottom:10px;display:block;}
+
+/* Inputs */
+input.ti,select.ti{background:var(--s1);border:1px solid var(--e6);border-radius:var(--r-lg);color:var(--t0);padding:7px 10px;font-size:13px;outline:none;width:100%;font-family:'Inter',sans-serif;}
+input.ti:focus,select.ti:focus{border-color:var(--fc);}
+select.ti{appearance:none;padding-right:32px;cursor:pointer;}
+
+/* Toggle */
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0;display:inline-block;}
+.toggle input{opacity:0;width:0;height:0;}
+.tsl{position:absolute;inset:0;background:var(--s3);border-radius:var(--r-f);cursor:pointer;transition:background .2s;}
+.tsl:before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 2px rgba(0,0,0,.15);}
+.toggle input:checked+.tsl{background:var(--sp);}
+.toggle input:checked+.tsl:before{transform:translateX(16px);}
+
+/* Range */
+input[type=range]{-webkit-appearance:none;appearance:none;height:4px;background:var(--e6);border-radius:var(--r-f);outline:none;cursor:pointer;width:100%;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--sp);border:2px solid #fff;box-shadow:0 0 0 1px var(--sp);}
+
+/* Color swatch */
+.cswatch{width:28px;height:28px;border-radius:var(--r-md);border:1px solid var(--e5);cursor:pointer;position:relative;overflow:hidden;flex-shrink:0;}
+.cswatch input[type=color]{position:absolute;opacity:0;inset:0;cursor:pointer;width:100%;height:100%;}
+
+/* Upload zone */
+.upload-zone{border:1.5px dashed var(--e5);border-radius:var(--r-lg);background:var(--s2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:border-color .15s;padding:14px;}
+.upload-zone:hover{border-color:var(--sp);}
+
+/* Underline tabs */
+.utabs{display:flex;border-bottom:1px solid var(--e6);}
+.utab{padding:10px 14px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--t2);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;font-family:'Inter',sans-serif;transition:color .15s;}
+.utab:hover{color:var(--t1);}
+.utab.active{color:var(--t0);border-bottom-color:var(--sp);}
+
+/* Position grid */
+.pos-btn{width:28px;height:28px;border:1px solid var(--e6);border-radius:var(--r-md);background:var(--s1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--t2);transition:all .15s;}
+.pos-btn:hover{background:var(--s2);}
+.pos-btn.active{border-color:var(--sp);background:rgba(37,99,235,.08);color:var(--sp);}
+
+/* Grid thumb */
+.grid-thumb{border:1.5px solid var(--e6);border-radius:var(--r-md);padding:8px;cursor:pointer;background:var(--s1);transition:border-color .15s;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.grid-thumb:hover{border-color:#60a5fa;}
+.grid-thumb.active{border-color:var(--sp);background:rgba(37,99,235,.04);}
+
+/* Kit card */
+.kit-card{background:var(--s1);border:1px solid var(--e6);border-radius:var(--r-xl);padding:16px;cursor:pointer;transition:border-color .15s,box-shadow .15s;display:flex;flex-direction:column;gap:10px;position:relative;}
+.kit-card:hover{border-color:#60a5fa;box-shadow:0 2px 8px rgba(37,99,235,.08);}
+.kit-card.active{border-color:var(--sp);box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+.kit-badge{font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:var(--r-f);}
+
+/* Dropdown */
+.dot-menu{background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:var(--r-md);color:var(--t3);transition:background .1s;}
+.dot-menu:hover{background:var(--s2);color:var(--t1);}
+.dropdown{position:absolute;right:12px;top:44px;background:var(--s1);border:1px solid var(--e6);border-radius:var(--r-lg);box-shadow:0 4px 16px rgba(0,0,0,.1);z-index:100;min-width:150px;overflow:hidden;display:none;}
+.dropdown.open{display:block;}
+.dd-item{padding:8px 12px;font-size:13px;color:var(--t1);cursor:pointer;display:flex;align-items:center;gap:8px;}
+.dd-item:hover{background:var(--s2);}
+.dd-item.danger{color:var(--red);}
+
+/* Misc */
+.divider{border:none;border-top:1px solid var(--e6);margin:10px 0;}
+.panel{flex:1;overflow-y:auto;padding:24px 24px 0;}
+.save-bar{background:var(--s1);border-top:1px solid var(--e6);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.page-header{background:var(--s1);border-bottom:1px solid var(--e6);padding:16px 24px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;}
+.info-box{background:rgba(37,99,235,.05);border:1px solid rgba(37,99,235,.2);border-radius:var(--r-xl);padding:14px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">a</div>
+      <span>aftershoot</span>
+    </div>
+    <div class="sb-nav">
+      <div class="nav-item">
+        <span class="ms" style="font-size:16px;color:var(--t2)">photo_library</span> Albums
+      </div>
+      <div style="margin-top:2px;">
+        <div class="nav-item nav-group-head" onclick="toggleStore()">
+          <div style="display:flex;align-items:center;gap:8px;"><span class="ms" style="font-size:16px;color:var(--t2)">shopping_cart</span>Store</div>
+          <span class="ms" id="store-chevron" style="font-size:16px;color:var(--t2)">keyboard_arrow_up</span>
+        </div>
+        <div class="nav-sub" id="store-sub">
+          <div class="nav-sub-item">Orders</div>
+          <div class="nav-sub-item">Products &amp; Pricing</div>
+          <div class="nav-sub-item">Shipping</div>
+          <div class="nav-sub-item">Coupons</div>
+          <div class="nav-sub-item">Payment</div>
+        </div>
+      </div>
+      <div class="nav-item active" style="margin-top:2px;" onclick="showList()">
+        <span class="ms msf" style="font-size:16px;color:var(--ta)">palette</span> Brand Kit
+      </div>
+    </div>
+    <div class="storage-card">
+      <div class="storage-label">Storage</div>
+      <div style="font-size:20px;font-weight:700;">10 GB</div>
+      <div class="storage-bar"><div class="storage-fill"></div></div>
+      <div style="font-size:11px;color:var(--t3);">0.13 / 10 GB used</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div id="main">
+
+    <!-- LIST VIEW -->
+    <div id="view-list" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+      <div class="page-header">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="ms msf" style="font-size:20px;color:var(--sp)">palette</span>
+            <span style="font-size:16px;font-weight:600;">Brand Kits</span>
+          </div>
+          <div style="font-size:13px;color:var(--t2);">Each kit bundles logos, watermark, fonts, colors and gallery settings.</div>
+        </div>
+        <button class="bp" onclick="addKit()"><span class="ms msf" style="font-size:16px">add</span>New Brand Kit</button>
+      </div>
+      <div class="panel" id="kit-grid" style="padding-bottom:24px;">
+        <!-- Kit cards injected by JS -->
+      </div>
+    </div>
+
+    <!-- EDIT VIEW -->
+    <div id="view-edit" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+      <!-- Breadcrumb + tabs -->
+      <div style="background:var(--s1);border-bottom:1px solid var(--e6);padding:12px 24px 0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+          <button onclick="showList()" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;color:var(--t2);font-size:13px;font-family:'Inter',sans-serif;padding:0;">
+            <span class="ms" style="font-size:14px;color:var(--t2)">palette</span> Brand Kits
+          </button>
+          <span class="ms" style="font-size:14px;color:var(--t3)">chevron_right</span>
+          <span id="edit-kit-name" style="font-size:13px;font-weight:600;"></span>
+          <span id="edit-default-badge" class="kit-badge" style="background:rgba(37,99,235,.1);color:var(--sp);display:none;">Default</span>
+        </div>
+        <div class="utabs">
+          <button class="utab active" onclick="switchTab('logos',this)">Logos</button>
+          <button class="utab" onclick="switchTab('watermark',this)">Watermark</button>
+          <button class="utab" onclick="switchTab('domain',this)">Domain</button>
+          <button class="utab" onclick="switchTab('gallery',this)">Gallery</button>
+          <button class="utab" onclick="switchTab('fonts',this)">Fonts</button>
+          <button class="utab" onclick="switchTab('colors',this)">Colors</button>
+        </div>
+      </div>
+      <!-- Tab panels -->
+      <div class="panel" id="tab-content"></div>
+      <!-- Save bar -->
+      <div class="save-bar">
+        <button class="bs" onclick="showList()"><span class="ms" style="font-size:16px">arrow_back</span>All Brand Kits</button>
+        <div style="display:flex;gap:8px;">
+          <button class="bs" onclick="discardChanges()">Discard Changes</button>
+          <button class="bp" id="save-btn" onclick="saveKit()">Save Kit</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+
+let nextId = 3;
+let activeKitId = null;
+let activeTab = 'logos';
+let openMenuId = null;
+let storeOpen = true;
+
+const defaultKitData = () => ({
+  watermark: { type:'text', text:'© YourBrand', size:14, opacity:35, pos:'bot-right' },
+  domain: { custom:'', ssl:true },
+  gallery: { layout:'grid', spacing:4, hoverZoom:true },
+  fonts: { heading:"'Playfair Display'", body:'Inter', baseSize:16 },
+  colors: { bg:'#ffffff', accent:'#2563eb', heading:'#18181b', body:'#474747', nav:'#111111' },
+  applyWatermark: true,
+});
+
+let kits = [
+  { id:1, name:'Wedding Gallery', isDefault:true, ...defaultKitData() },
+  { id:2, name:'Portrait Studio', isDefault:false, ...JSON.parse(JSON.stringify(defaultKitData())) },
+];
+
+function getKit(id) { return kits.find(k => k.id === id); }
+function currentKit() { return getKit(activeKitId); }
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+
+function toggleStore() {
+  storeOpen = !storeOpen;
+  document.getElementById('store-sub').style.display = storeOpen ? '' : 'none';
+  document.getElementById('store-chevron').textContent = storeOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+}
+
+function showList() {
+  document.getElementById('view-list').style.display = 'flex';
+  document.getElementById('view-edit').style.display = 'none';
+  closeMenu();
+  renderKitGrid();
+}
+
+function showEdit(id) {
+  activeKitId = id;
+  document.getElementById('view-list').style.display = 'none';
+  const el = document.getElementById('view-edit');
+  el.style.display = 'flex';
+  const kit = currentKit();
+  document.getElementById('edit-kit-name').textContent = kit.name;
+  const badge = document.getElementById('edit-default-badge');
+  badge.style.display = kit.isDefault ? 'inline' : 'none';
+  switchTabByName('logos');
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.utab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeTab = name;
+  renderTabContent(name);
+}
+
+function switchTabByName(name) {
+  activeTab = name;
+  document.querySelectorAll('.utab').forEach((b, i) => {
+    const tabs = ['logos','watermark','domain','gallery','fonts','colors'];
+    b.classList.toggle('active', tabs[i] === name);
+  });
+  renderTabContent(name);
+}
+
+// ── Kit Management ─────────────────────────────────────────────────────────
+
+function addKit() {
+  const id = ++nextId;
+  kits.push({ id, name: 'New Brand Kit ' + id, isDefault: false, ...defaultKitData() });
+  showEdit(id);
+}
+
+function duplicateKit(id) {
+  const src = getKit(id);
+  const nid = ++nextId;
+  kits.push({ ...JSON.parse(JSON.stringify(src)), id: nid, name: src.name + ' (copy)', isDefault: false });
+  renderKitGrid();
+}
+
+function deleteKit(id) {
+  if (kits.length === 1) { alert('You need at least one Brand Kit.'); return; }
+  kits = kits.filter(k => k.id !== id);
+  if (activeKitId === id) activeKitId = kits[0].id;
+  renderKitGrid();
+}
+
+function setDefault(id) {
+  kits.forEach(k => k.isDefault = k.id === id);
+  renderKitGrid();
+}
+
+function startRename(id) {
+  const kit = getKit(id);
+  const el = document.getElementById('kit-name-' + id);
+  el.innerHTML = `<input class="ti" value="${kit.name}" style="font-size:13px;font-weight:600;padding:3px 6px;"
+    onblur="commitRename(${id},this.value)"
+    onkeydown="if(event.key==='Enter')this.blur();if(event.key==='Escape')renderKitGrid();"
+    onclick="event.stopPropagation()" />`;
+  el.querySelector('input').focus();
+  closeMenu();
+}
+
+function commitRename(id, name) {
+  const kit = getKit(id);
+  if (kit) kit.name = name.trim() || kit.name;
+  renderKitGrid();
+  if (activeKitId === id) document.getElementById('edit-kit-name').textContent = kit.name;
+}
+
+function toggleMenu(id, event) {
+  event.stopPropagation();
+  const menu = document.getElementById('menu-' + id);
+  if (openMenuId === id) {
+    menu.classList.remove('open');
+    openMenuId = null;
+  } else {
+    if (openMenuId) document.getElementById('menu-' + openMenuId)?.classList.remove('open');
+    menu.classList.add('open');
+    openMenuId = id;
+  }
+}
+
+function closeMenu() {
+  if (openMenuId) { document.getElementById('menu-' + openMenuId)?.classList.remove('open'); openMenuId = null; }
+}
+
+document.addEventListener('click', closeMenu);
+
+function saveKit() {
+  const btn = document.getElementById('save-btn');
+  btn.style.background = 'var(--green)';
+  btn.innerHTML = '<span class="ms msf" style="font-size:16px">check_circle</span> Saved!';
+  setTimeout(() => { btn.style.background = ''; btn.innerHTML = 'Save Kit'; }, 2000);
+}
+
+function discardChanges() {
+  showEdit(activeKitId); // re-render from state
+}
+
+// ── Kit Grid Renderer ──────────────────────────────────────────────────────
+
+function renderKitGrid() {
+  const grid = document.getElementById('kit-grid');
+  const presetColors = { Classic:'#2563eb', Dark:'#60a5fa', Warm:'#c2410c', Sage:'#15803d' };
+
+  let html = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;max-width:860px;">`;
+
+  kits.forEach(kit => {
+    const swatches = [kit.colors.accent, kit.colors.bg, kit.colors.heading, kit.colors.nav];
+    const swatchHtml = swatches.map(c => `<div style="width:20px;height:20px;border-radius:var(--r-sm);background:${c};border:1px solid rgba(0,0,0,.08);"></div>`).join('');
+    const isActive = kit.id === activeKitId;
+    html += `
+    <div class="kit-card${isActive?' active':''}" onclick="showEdit(${kit.id})">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;">
+          <div style="width:36px;height:36px;border-radius:var(--r-lg);background:linear-gradient(135deg,${kit.colors.accent},${kit.colors.nav});flex-shrink:0;"></div>
+          <div style="min-width:0;">
+            <div id="kit-name-${kit.id}" style="font-size:13px;font-weight:600;color:var(--t0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escHtml(kit.name)}</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:1px;">${kit.gallery.layout} layout · ${kit.fonts.body.replace(/'/g,'')}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;margin-left:8px;" onclick="event.stopPropagation()">
+          ${kit.isDefault ? '<span class="kit-badge" style="background:rgba(37,99,235,.1);color:var(--sp);">Default</span>' : ''}
+          ${isActive ? '<span class="kit-badge" style="background:rgba(21,128,61,.1);color:var(--green);">Editing</span>' : ''}
+          <button class="dot-menu" onclick="toggleMenu(${kit.id},event)"><span class="ms" style="font-size:16px">more_vert</span></button>
+          <div class="dropdown" id="menu-${kit.id}">
+            ${!kit.isDefault ? `<div class="dd-item" onclick="setDefault(${kit.id});closeMenu();"><span class="ms" style="font-size:16px;color:var(--t2)">star</span>Set as default</div>` : ''}
+            <div class="dd-item" onclick="startRename(${kit.id})"><span class="ms" style="font-size:16px;color:var(--t2)">edit</span>Rename</div>
+            <div class="dd-item" onclick="duplicateKit(${kit.id});closeMenu();"><span class="ms" style="font-size:16px;color:var(--t2)">content_copy</span>Duplicate</div>
+            ${!kit.isDefault ? `<div class="dd-item danger" onclick="deleteKit(${kit.id});closeMenu();"><span class="ms" style="font-size:16px;color:var(--red)">delete</span>Delete</div>` : ''}
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:4px;align-items:center;">
+        ${swatchHtml}
+        ${kit.applyWatermark ? '<span style="margin-left:auto;font-size:11px;color:var(--t3);display:flex;align-items:center;gap:2px;"><span class="ms" style="font-size:12px">water_drop</span>Watermark</span>' : ''}
+      </div>
+    </div>`;
+  });
+
+  html += `
+    <div onclick="addKit()" style="border:1.5px dashed var(--e5);border-radius:var(--r-xl);padding:24px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:border-color .15s;min-height:100px;"
+      onmouseenter="this.style.borderColor='var(--sp)'" onmouseleave="this.style.borderColor='var(--e5)'">
+      <div style="width:36px;height:36px;border-radius:var(--r-f);background:var(--s2);display:flex;align-items:center;justify-content:center;">
+        <span class="ms" style="font-size:20px;color:var(--t3)">add</span>
+      </div>
+      <span style="font-size:13px;font-weight:500;color:var(--t2);">New Brand Kit</span>
+    </div>
+  </div>`;
+
+  grid.innerHTML = html;
+}
+
+// ── Tab Renderers ──────────────────────────────────────────────────────────
+
+function renderTabContent(tab) {
+  const el = document.getElementById('tab-content');
+  const kit = currentKit();
+  const fns = { logos:renderLogos, watermark:renderWatermark, domain:renderDomain, gallery:renderGallery, fonts:renderFonts, colors:renderColors };
+  el.innerHTML = fns[tab] ? fns[tab](kit) : '';
+  attachTabListeners(tab, kit);
+}
+
+// ── Logos ──
+
+function renderLogos(kit) {
+  return `
+  <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:18px;">Upload separate logos for light and dark gallery backgrounds.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px;">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div><div style="font-size:13px;font-weight:600;">Light Logo</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">For light backgrounds</div></div>
+        <span class="kit-badge" style="background:var(--s2);color:var(--t2);">Light</span>
+      </div>
+      <div style="background:#f0f0ef;border-radius:var(--r-lg);height:72px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;border:1px solid var(--e5);">
+        <span style="font-size:18px;font-weight:700;color:#222;opacity:.6;font-style:italic;">YourBrand</span>
+      </div>
+      <div class="upload-zone"><span class="ms" style="font-size:16px;color:var(--t3)">upload</span><span style="font-size:12px;color:var(--t2)">Upload PNG or SVG</span></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div><div style="font-size:13px;font-weight:600;">Dark Logo</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">For dark backgrounds</div></div>
+        <span class="kit-badge" style="background:#27272a;color:#a1a1aa;">Dark</span>
+      </div>
+      <div style="background:#1c1c1c;border-radius:var(--r-lg);height:72px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;border:1px solid #333;">
+        <span style="font-size:18px;font-weight:700;color:#fff;opacity:.8;font-style:italic;">YourBrand</span>
+      </div>
+      <div class="upload-zone"><span class="ms" style="font-size:16px;color:var(--t3)">upload</span><span style="font-size:12px;color:var(--t2)">Upload PNG or SVG</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px;max-width:300px;">
+    <div style="font-size:13px;font-weight:600;margin-bottom:3px;">Favicon</div>
+    <div style="font-size:11px;color:var(--t2);margin-bottom:12px;">Square icon, min 32×32px</div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:48px;height:48px;border:1px solid var(--e6);border-radius:var(--r-lg);background:var(--s2);display:flex;align-items:center;justify-content:center;">
+        <span class="ms" style="font-size:20px;color:var(--t3)">image</span>
+      </div>
+      <button class="bs" style="flex:1;justify-content:center;"><span class="ms" style="font-size:16px">upload</span>Upload</button>
+    </div>
+  </div>`;
+}
+
+// ── Watermark ──
+
+function renderWatermark(kit) {
+  const w = kit.watermark;
+  const ps = { 'top-left':'top:10px;left:10px', 'top-center':'top:10px;left:50%;transform:translateX(-50%)', 'top-right':'top:10px;right:10px',
+    'mid-left':'top:50%;left:10px;transform:translateY(-50%)', 'center':'top:50%;left:50%;transform:translate(-50%,-50%)',
+    'mid-right':'top:50%;right:10px;transform:translateY(-50%)', 'bot-left':'bottom:10px;left:10px',
+    'bot-center':'bottom:10px;left:50%;transform:translateX(-50%)', 'bot-right':'bottom:10px;right:10px' };
+  const fs = 8 + Math.round(w.size * 0.4);
+  const posGrid = [['↖','top-left'],['↑','top-center'],['↗','top-right'],['←','mid-left'],['⊙','center'],['→','mid-right'],['↙','bot-left'],['↓','bot-center'],['↘','bot-right']];
+  return `
+  <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:18px;">Protect your photos with a watermark. Adjust placement, size and opacity below.</p>
+  <div style="display:grid;grid-template-columns:1fr 270px;gap:18px;max-width:720px;">
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="card">
+        <span class="slabel">Type</span>
+        <div style="display:flex;gap:6px;">
+          <button class="${w.type==='text'?'bp':'bs'}" style="flex:1;justify-content:center;" onclick="setWmType('text')">Text</button>
+          <button class="${w.type==='image'?'bp':'bs'}" style="flex:1;justify-content:center;" onclick="setWmType('image')">Image</button>
+        </div>
+      </div>
+      ${w.type==='text'?`<div class="card"><span class="slabel">Text</span><input class="ti" id="wm-text" value="${escHtml(w.text)}" oninput="updateWm('text',this.value)"/></div>`
+        :`<div class="card"><span class="slabel">Watermark Image</span><div class="upload-zone"><span class="ms" style="font-size:16px;color:var(--t3)">upload</span><span style="font-size:12px;color:var(--t2)">Upload PNG (transparent)</span></div></div>`}
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span class="slabel" style="margin-bottom:0">Size</span><span id="wm-size-val" style="font-size:13px;font-weight:600;">${w.size}%</span></div>
+        <input type="range" min="6" max="40" value="${w.size}" step="1" oninput="updateWm('size',+this.value);document.getElementById('wm-size-val').textContent=this.value+'%'"/>
+        <div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:11px;color:var(--t3)">Small</span><span style="font-size:11px;color:var(--t3)">Large</span></div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span class="slabel" style="margin-bottom:0">Opacity</span><span id="wm-op-val" style="font-size:13px;font-weight:600;">${w.opacity}%</span></div>
+        <input type="range" min="5" max="100" value="${w.opacity}" step="1" oninput="updateWm('opacity',+this.value);document.getElementById('wm-op-val').textContent=this.value+'%'"/>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div id="wm-preview" style="position:relative;height:170px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--e6);">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#b8cfe8,#8aadcc,#6e9bb8);"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(0deg,#5e7f5e,transparent);"></div>
+        <div id="wm-label" style="position:absolute;font-size:${fs}px;font-weight:600;color:rgba(20,20,20,1);opacity:${w.opacity/100};white-space:nowrap;pointer-events:none;letter-spacing:.3px;${ps[w.pos]}">${escHtml(w.type==='text'?w.text:'[ logo ]')}</div>
+      </div>
+      <div class="card">
+        <span class="slabel">Position</span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+          ${posGrid.map(([sym,id])=>`<button class="pos-btn${w.pos===id?' active':''}" onclick="updateWm('pos','${id}')">${sym}</button>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;justify-content:space-between;">
+        <div><div style="font-size:13px;font-weight:500;">Apply to downloads</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">Embed on exported photos</div></div>
+        <label class="toggle"><input type="checkbox" ${kit.applyWatermark?'checked':''} onchange="updateKit('applyWatermark',this.checked)"><span class="tsl"></span></label>
+      </div>
+    </div>
+  </div>`;
+}
+
+function setWmType(type) {
+  currentKit().watermark.type = type;
+  renderTabContent('watermark');
+}
+function updateWm(key, val) {
+  currentKit().watermark[key] = val;
+  const ps = { 'top-left':'top:10px;left:10px', 'top-center':'top:10px;left:50%;transform:translateX(-50%)', 'top-right':'top:10px;right:10px',
+    'mid-left':'top:50%;left:10px;transform:translateY(-50%)', 'center':'top:50%;left:50%;transform:translate(-50%,-50%)',
+    'mid-right':'top:50%;right:10px;transform:translateY(-50%)', 'bot-left':'bottom:10px;left:10px',
+    'bot-center':'bottom:10px;left:50%;transform:translateX(-50%)', 'bot-right':'bottom:10px;right:10px' };
+  const w = currentKit().watermark;
+  const lbl = document.getElementById('wm-label');
+  if (lbl) {
+    const fs = 8 + Math.round(w.size * 0.4);
+    lbl.style.cssText = `position:absolute;font-size:${fs}px;font-weight:600;color:rgba(20,20,20,1);opacity:${w.opacity/100};white-space:nowrap;pointer-events:none;letter-spacing:.3px;${ps[w.pos]}`;
+    lbl.textContent = w.type==='text' ? w.text : '[ logo ]';
+  }
+  // Re-render pos grid buttons
+  document.querySelectorAll('.pos-btn').forEach(b => {
+    const posMap = ['top-left','top-center','top-right','mid-left','center','mid-right','bot-left','bot-center','bot-right'];
+    const idx = Array.from(document.querySelectorAll('.pos-btn')).indexOf(b);
+    b.classList.toggle('active', posMap[idx] === w.pos);
+  });
+}
+
+// ── Domain ──
+
+function renderDomain(kit) {
+  return `
+  <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:18px;">Connect your own domain so clients access galleries at a URL you own.</p>
+  <div style="max-width:500px;display:flex;flex-direction:column;gap:12px;">
+    <div class="card">
+      <span class="slabel">Default URL</span>
+      <div style="display:flex;align-items:center;gap:8px;background:var(--s2);border-radius:var(--r-lg);padding:8px 10px;">
+        <span class="ms" style="font-size:16px;color:var(--t3)">link</span>
+        <span style="font-size:13px;color:var(--t2);font-family:monospace;">yourname.aftershoot.com</span>
+      </div>
+    </div>
+    <div class="card">
+      <span class="slabel">Custom Domain</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input class="ti" id="domain-input" placeholder="galleries.yoursite.com" value="${escHtml(kit.domain.custom)}" oninput="currentKit().domain.custom=this.value"/>
+        <button class="bp" style="white-space:nowrap;" onclick="verifyDomain()"><span class="ms msf" style="font-size:16px">check_circle</span>Verify</button>
+      </div>
+      <div id="domain-status" style="margin-top:8px;display:none;"></div>
+    </div>
+    <div class="info-box">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;"><span class="ms msf" style="font-size:16px;color:var(--sp)">info</span><span style="font-size:13px;font-weight:600;">DNS Setup</span></div>
+      <p style="font-size:12px;color:var(--t1);line-height:18px;margin-bottom:10px;">Add a CNAME record in your DNS provider pointing to:</p>
+      <div style="background:var(--s1);border:1px solid var(--e6);border-radius:var(--r-lg);padding:8px 10px;font-family:monospace;font-size:12px;margin-bottom:10px;">cname.aftershoot.com</div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:3px 8px;font-size:12px;">
+        <span style="color:var(--t2)">Type</span><span style="font-family:monospace">CNAME</span>
+        <span style="color:var(--t2)">Host</span><span style="font-family:monospace">galleries</span>
+        <span style="color:var(--t2)">Value</span><span style="font-family:monospace">cname.aftershoot.com</span>
+        <span style="color:var(--t2)">TTL</span><span>Auto / 3600</span>
+      </div>
+    </div>
+    <div class="card" style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="ms msf" style="font-size:16px;color:var(--green)">lock</span>
+        <div><div style="font-size:13px;font-weight:500;">Auto SSL Certificate</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">HTTPS enforced automatically</div></div>
+      </div>
+      <label class="toggle"><input type="checkbox" ${kit.domain.ssl?'checked':''} onchange="currentKit().domain.ssl=this.checked"><span class="tsl"></span></label>
+    </div>
+  </div>`;
+}
+
+function verifyDomain() {
+  const val = document.getElementById('domain-input').value.trim();
+  const st = document.getElementById('domain-status');
+  st.style.display = 'flex';
+  st.style.alignItems = 'center';
+  st.style.gap = '6px';
+  if (!val.includes('.')) {
+    st.innerHTML = '<span class="ms msf" style="font-size:16px;color:var(--red)">error</span><span style="font-size:12px;color:var(--red)">Enter a valid domain first.</span>';
+    return;
+  }
+  st.innerHTML = '<span class="ms" style="font-size:16px;color:var(--t3)">hourglass_top</span><span style="font-size:12px;color:var(--t2)">Checking DNS…</span>';
+  setTimeout(() => {
+    st.innerHTML = '<span class="ms msf" style="font-size:16px;color:var(--green)">check_circle</span><span style="font-size:12px;color:var(--green)">CNAME verified — domain is active.</span>';
+  }, 1800);
+}
+
+// ── Gallery ──
+
+const GRID_LAYOUTS = [
+  {id:'grid',label:'Grid'},{id:'masonry',label:'Masonry'},{id:'fullwidth',label:'Full-Width'},
+  {id:'justified',label:'Justified'},{id:'slideshow',label:'Slideshow'},{id:'spotlight',label:'Spotlight'},
+];
+
+function gridSvg(id) {
+  const c = 'var(--s3)';
+  if(id==='grid') return `<svg width="100%" height="60" viewBox="0 0 80 60">${[[0,0],[28,0],[56,0],[0,32],[28,32],[56,32]].map(([x,y])=>`<rect x="${x}" y="${y}" width="24" height="26" rx="2" fill="${c}"/>`).join('')}</svg>`;
+  if(id==='masonry') return `<svg width="100%" height="60" viewBox="0 0 80 60"><rect x="0" y="0" width="36" height="36" rx="2" fill="${c}"/><rect x="0" y="40" width="36" height="20" rx="2" fill="${c}"/><rect x="42" y="0" width="36" height="20" rx="2" fill="${c}"/><rect x="42" y="24" width="36" height="36" rx="2" fill="${c}"/></svg>`;
+  if(id==='fullwidth') return `<svg width="100%" height="60" viewBox="0 0 80 60"><rect x="0" y="0" width="80" height="26" rx="2" fill="${c}"/><rect x="0" y="30" width="80" height="16" rx="2" fill="${c}"/><rect x="0" y="50" width="80" height="10" rx="2" fill="${c}"/></svg>`;
+  if(id==='justified') return `<svg width="100%" height="60" viewBox="0 0 80 60"><rect x="0" y="0" width="30" height="26" rx="2" fill="${c}"/><rect x="34" y="0" width="20" height="26" rx="2" fill="${c}"/><rect x="58" y="0" width="22" height="26" rx="2" fill="${c}"/><rect x="0" y="32" width="18" height="26" rx="2" fill="${c}"/><rect x="22" y="32" width="30" height="26" rx="2" fill="${c}"/><rect x="56" y="32" width="24" height="26" rx="2" fill="${c}"/></svg>`;
+  if(id==='slideshow') return `<svg width="100%" height="60" viewBox="0 0 80 60"><rect x="15" y="8" width="50" height="44" rx="2" fill="${c}"/><circle cx="40" cy="30" r="10" fill="rgba(37,99,235,.12)"/><polygon points="37,25 37,35 48,30" fill="rgba(37,99,235,.6)"/></svg>`;
+  if(id==='spotlight') return `<svg width="100%" height="60" viewBox="0 0 80 60"><rect x="0" y="0" width="36" height="60" rx="2" fill="${c}"/><rect x="42" y="0" width="36" height="26" rx="2" fill="${c}"/><rect x="42" y="34" width="36" height="26" rx="2" fill="${c}"/></svg>`;
+  return '';
+}
+
+function renderGallery(kit) {
+  const g = kit.gallery;
+  return `
+  <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:18px;">Choose how photos are arranged in your client galleries.</p>
+  <div style="max-width:660px;">
+    <span class="slabel">Layout Template</span>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;">
+      ${GRID_LAYOUTS.map(({id,label})=>`
+        <div class="grid-thumb${g.layout===id?' active':''}" onclick="setGalleryLayout('${id}')">
+          ${gridSvg(id)}
+          <span style="font-size:11px;font-weight:600;color:var(--t1)">${label}</span>
+        </div>`).join('')}
+    </div>
+    <div class="card" style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span class="slabel" style="margin-bottom:0">Photo Spacing</span><span id="sp-val" style="font-size:13px;font-weight:600;">${g.spacing}px</span></div>
+      <input type="range" min="0" max="20" value="${g.spacing}" step="1" oninput="currentKit().gallery.spacing=+this.value;document.getElementById('sp-val').textContent=this.value+'px'"/>
+      <div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:11px;color:var(--t3)">None</span><span style="font-size:11px;color:var(--t3)">Loose</span></div>
+    </div>
+    <div class="card" style="display:flex;align-items:center;justify-content:space-between;">
+      <div><div style="font-size:13px;font-weight:500;">Hover Zoom Effect</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">Subtle scale on mouse-over</div></div>
+      <label class="toggle"><input type="checkbox" ${g.hoverZoom?'checked':''} onchange="currentKit().gallery.hoverZoom=this.checked"><span class="tsl"></span></label>
+    </div>
+  </div>`;
+}
+
+function setGalleryLayout(id) {
+  currentKit().gallery.layout = id;
+  renderTabContent('gallery');
+}
+
+// ── Fonts ──
+
+const HEAD_FONTS = [["Inter","Inter"],["'Playfair Display'","Playfair Display"],["'Cormorant Garamond'","Cormorant Garamond"],["Montserrat","Montserrat"],["Lora","Lora"],["'Josefin Sans'","Josefin Sans"]];
+const BODY_FONTS = [["Inter","Inter"],["Lato","Lato"],["Raleway","Raleway"],["'Open Sans'","Open Sans"],["'Source Sans Pro'","Source Sans Pro"]];
+
+function renderFonts(kit) {
+  const f = kit.fonts;
+  return `
+  <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:18px;">Set fonts for gallery headings and body text.</p>
+  <div style="max-width:440px;display:flex;flex-direction:column;gap:12px;">
+    <div class="card">
+      <span class="slabel">Heading Font</span>
+      <div style="position:relative;">
+        <select class="ti" onchange="updateFont('heading',this.value)">
+          ${HEAD_FONTS.map(([v,l])=>`<option value="${v}"${f.heading===v?' selected':''}>${l}</option>`).join('')}
+        </select>
+        <span class="ms" style="font-size:16px;color:var(--t3);position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;">keyboard_arrow_down</span>
+      </div>
+      <div id="head-preview" style="margin-top:10px;padding:10px 12px;background:var(--s2);border-radius:var(--r-lg);font-family:${f.heading},serif;font-size:22px;color:var(--t0);font-weight:600;">Sarah &amp; James</div>
+    </div>
+    <div class="card">
+      <span class="slabel">Body Font</span>
+      <div style="position:relative;">
+        <select class="ti" onchange="updateFont('body',this.value)">
+          ${BODY_FONTS.map(([v,l])=>`<option value="${v}"${f.body===v?' selected':''}>${l}</option>`).join('')}
+        </select>
+        <span class="ms" style="font-size:16px;color:var(--t3);position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;">keyboard_arrow_down</span>
+      </div>
+      <div id="body-preview" style="margin-top:10px;padding:10px 12px;background:var(--s2);border-radius:var(--r-lg);font-family:${f.body},sans-serif;font-size:13px;color:var(--t1);line-height:18px;">
+        Thank you for choosing us. View and download your photos below.
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span class="slabel" style="margin-bottom:0">Base Font Size</span><span id="fs-val" style="font-size:13px;font-weight:600;">${f.baseSize}px</span></div>
+      <input type="range" min="12" max="22" value="${f.baseSize}" step="1" oninput="currentKit().fonts.baseSize=+this.value;document.getElementById('fs-val').textContent=this.value+'px'"/>
+    </div>
+  </div>`;
+}
+
+function updateFont(key, val) {
+  currentKit().fonts[key] = val;
+  const previewId = key === 'heading' ? 'head-preview' : 'body-preview';
+  const el = document.getElementById(previewId);
+  if (el) el.style.fontFamily = val + (key==='heading'?',serif':',sans-serif');
+}
+
+// ── Colors ──
+
+const COLOR_ROWS = [
+  {key:'bg',label:'Background',desc:'Main gallery background'},
+  {key:'accent',label:'Accent / CTA',desc:'Buttons and links'},
+  {key:'heading',label:'Heading Text',desc:'Gallery titles and names'},
+  {key:'body',label:'Body Text',desc:'Captions and descriptions'},
+  {key:'nav',label:'Nav Bar',desc:'Client gallery header'},
+];
+
+const PRESETS = {
+  Classic:{bg:'#ffffff',accent:'#2563eb',heading:'#18181b',body:'#474747',nav:'#111111'},
+  Dark:{bg:'#111111',accent:'#60a5fa',heading:'#ffffff',body:'#ababab',nav:'#09090b'},
+  Warm:{bg:'#f5ede3',accent:'#c2410c',heading:'#3d2b1f',body:'#78604e',nav:'#3d2b1f'},
+  Sage:{bg:'#e8eee8',accent:'#15803d',heading:'#1c2e1c',body:'#4a6152',nav:'#1c2e1c'},
+};
+
+function renderColors(kit) {
+  const c = kit.colors;
+  const rows = COLOR_ROWS.map((r,i) => `
+    ${i>0?'<hr class="divider"/>':''}
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:13px;font-weight:500;">${r.label}</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px;">${r.desc}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span id="hex-${r.key}" style="font-size:11px;font-family:monospace;color:var(--t2);">${c[r.key].toUpperCase()}</span>
+        <div class="cswatch" style="background:${c[r.key]};" id="sw-${r.key}">
+          <input type="color" value="${c[r.key]}" oninput="updateColor('${r.key}',this.value)"/>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const presetBtns = Object.entries(PRESETS).map(([name,p]) =>
+    `<button class="bs" onclick="applyPreset('${name}')" style="gap:6px;">
+      <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${p.bg};border:1px solid rgba(0,0,0,.15);flex-shrink:0;"></span>${name}
+    </button>`).join('');
+
+  return `
+  <p style="font-size:13px;color:var(--t2);margin-bottom:20px;line-height:18px;">Customize your gallery's color palette to match your brand.</p>
+  <div style="max-width:480px;display:flex;flex-direction:column;gap:12px;">
+    <div class="card"><span class="slabel">Gallery Colors</span><div style="display:flex;flex-direction:column;gap:12px;">${rows}</div></div>
+    <div class="card"><span class="slabel">Quick Presets</span><div style="display:flex;gap:8px;flex-wrap:wrap;">${presetBtns}</div></div>
+  </div>`;
+}
+
+function updateColor(key, val) {
+  currentKit().colors[key] = val;
+  const sw = document.getElementById('sw-' + key);
+  const hex = document.getElementById('hex-' + key);
+  if (sw) sw.style.background = val;
+  if (hex) hex.textContent = val.toUpperCase();
+}
+
+function applyPreset(name) {
+  Object.assign(currentKit().colors, PRESETS[name]);
+  renderTabContent('colors');
+}
+
+function updateKit(key, val) {
+  currentKit()[key] = val;
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+function attachTabListeners(tab) { /* event delegation handles everything */ }
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+
+showList();
+</script>
+</body>
+</html>
